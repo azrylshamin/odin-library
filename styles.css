@@ -1,0 +1,40 @@
+:root {
+    --alice-blue: #E9F5FF;
+    --jordy-blue: #93BFEF;
+    --tufts-blue: #468BE6;
+    --cobalt-blue: #1A5799;
+    --cool-black: #092F64;
+    --eerie-black: #1F1F1F;
+}
+
+.container {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    min-width: 100vw;
+    height: 100vh;
+}
+
+.header {
+    color: var(--cool-black);
+    background-color: var(--cobalt-blue);
+}
+
+.content {
+    background-color: var(--alice-blue);
+    padding: 1rem;
+}
+
+.content .card {
+    width: 10rem;
+    height: 10rem;
+
+    background-color: var(--jordy-blue);
+}
+
+.card .card-title {
+    color: var(--cobalt-blue);
+}
+
+.card .card-content{
+    color: var(--eerie-black)
+}

@@ -1,20 +1,25 @@
 const myLibrary = [];
 
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
+function Book(id, title, author, pages, hasRead) {
+  this.id = id;
+  this.title = title;
+  this.author = author;
+  this.pages = pages;
+  this.hasRead = hasRead;
 
-    this.info = function(){
-        let hasRead = read ? "has read" : "not read yet";
-        return `${title} by ${author}, ${pages} pages, ${hasRead}`;
-    };
+  this.info = function () {
+    let read = hasRead ? "already read" : "not read yet";
+    return `${title} by ${author}, ${pages} pages, ${read}`;
+  };
 }
 
-function addBookToLibrary() {
-  // take params, create a book then store it in the array
+function addBookToLibrary(title, author, pages, hasRead) {
+  let id = crypto.randomUUID();
+  myLibrary.push(new Book(id, title, author, pages, hasRead));
 }
 
-const theHobbit = new Book("The Hobbit", "J.R.R Tolkien", 295, false);
-console.log(theHobbit.info());
+addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, false);
+
+console.log("Book ID:", myLibrary[0].id);
+console.log(myLibrary[0].info()); 
+
