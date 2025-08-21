@@ -24,11 +24,19 @@
     padding: 1rem;
 }
 
-.content .card {
-    width: 10rem;
-    height: 10rem;
+.content .card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 1rem;
+}
 
+.content .card {
+    width: 15rem;
+    height: 20rem;
     background-color: var(--jordy-blue);
+
+    padding: 1rem;
+    border-radius: 0.5rem;
 }
 
 .card .card-title {
@@ -36,5 +44,5 @@
 }
 
 .card .card-content{
-    color: var(--eerie-black)
+    color: var(--eerie-black);
 }
