@@ -8,15 +8,20 @@ function Book(id, title, author, pages, hasRead) {
   this.hasRead = hasRead;
 
   this.info = function () {
-    let read = hasRead ? "already read" : "not read yet";
+    let read = this.hasRead ? "already read" : "not read yet";
     return `${title} by ${author}, ${pages} pages, ${read}`;
   };
+
+  this.toggleStatus = function () {
+    this.hasRead = !this.hasRead;
+  }
 }
 
 function addBookToLibrary(title, author, pages, hasRead) {
   let id = crypto.randomUUID();
   myLibrary.push(new Book(id, title, author, pages, hasRead));
 }
+
 
 addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, false);
 addBookToLibrary("The Diary of a Young Girl", "Anne Frank", 256, false);
@@ -45,7 +50,7 @@ function displayBooks() {
     pages.classList.add("book-pages");
 
     const status = document.createElement("p");
-    status.textContent = "Status: " + book.hasRead;
+    status.textContent = "Status: " + (book.hasRead ? "Read" : "Not read yet");
     status.classList.add("card-content");
     status.classList.add("book-status");
 
@@ -58,11 +63,25 @@ function displayBooks() {
       parent.remove();
     });
 
+    const statusBtn = document.createElement("button");
+    statusBtn.textContent = book.hasRead ? "Mark as Unread" : "Mark as Read"
+    statusBtn.classList.add("card-status-update");
+
+    statusBtn.addEventListener('click', () => {
+      book.toggleStatus();
+
+      status.textContent = "Status: " + (book.hasRead ? "Read" : "Not read yet");
+  
+      statusBtn.textContent = book.hasRead ? "Mark as Unread" : "Mark as Read";
+    });
+
     card.appendChild(title);
     card.appendChild(author);
     card.appendChild(pages);
     card.appendChild(status);
     card.appendChild(deleteBtn);
+    card.appendChild(statusBtn);
+
 
     cardContainer.appendChild(card);
   }
@@ -89,7 +108,7 @@ function addDisplayBook(book) {
   pages.classList.add("book-pages");
 
   const status = document.createElement("p");
-  status.textContent = "Status: " + book.hasRead;
+  status.textContent = "Status: " + (book.hasRead ? "read" : "not read yet");
   status.classList.add("card-content");
   status.classList.add("book-status");
 
@@ -102,12 +121,24 @@ function addDisplayBook(book) {
     parent.remove();
   });
 
+  const statusBtn = document.createElement("button");
+  statusBtn.textContent = book.hasRead ? "Mark as Unread" : "Mark as Read"
+  statusBtn.classList.add("card-status-update");
+
+  statusBtn.addEventListener('click', () => {
+    book.toggleStatus();
+
+    status.textContent = "Status: " + (book.hasRead ? "Read" : "Not read yet");
+  
+    statusBtn.textContent = book.hasRead ? "Mark as Unread" : "Mark as Read";
+  });
+
   card.appendChild(title);
   card.appendChild(author);
   card.appendChild(pages);
   card.appendChild(status);
   card.appendChild(deleteBtn);
-
+  card.appendChild(statusBtn);
 
   cardContainer.appendChild(card);
 }
