@@ -80,7 +80,11 @@
     color: var(--eerie-black);
 }
 
-
+.card button.card-delete-button {
+    background-color: var(--alice-blue);
+    color: var(--eerie-black);
+    width: 100%;
+}
 
 
 #dialog {
